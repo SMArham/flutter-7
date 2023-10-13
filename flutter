@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class LudoBoard extends StatelessWidget {
+  final String ludoBoardSvg;
+
+  const LudoBoard({Key? key, required this.ludoBoardSvg}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.string(
+      ludoBoardSvg,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.75,
+    );
+  }
+}
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: LudoBoard(
+          ludoBoardSvg: _ludoBoardSvg,
+        ),
+      ),
+    );
+  }
+}
+
+const String _ludoBoardSvg = '''
+<svg viewBox="0 0 1000 1000">
+  <rect x="0" y="0" width="1000" height="1000" fill="white" stroke="black" stroke-width="5" />
+
+  <circle cx="500" cy="500" r="25" fill="gold" />
+
+  <path d="M 0 0 L 0 1000 L 1000 1000 L 1000 0 Z" fill="none" stroke="black" stroke-width="5" />
+
+  <path d="M 250 250 L 750 250 L 750 750 L 250 750 Z" fill="red" stroke="black" stroke-width="5" />
+  <path d="M 250 750 L 750 750 L 750 250 L 250 250 Z" fill="blue" stroke="black" stroke-width="5" />
+  <path d="M 750 250 L 750 750 L 250 750 L 250 250 Z" fill="green" stroke="black" stroke-width="5" />
+  <path d="M 750 750 L 250 750 L 250 250 L 750 250 Z" fill="yellow" stroke="black" stroke-width="5" />
+
+  <text x="125" y="125" font-size="20" font-weight="bold" fill="black">Red</text>
+  <text x="125" y="875" font-size="20" font-weight="bold" fill="black">Blue</text>
+  <text x="875" y="125" font-size="20" font-weight="bold" fill="black">Green</text>
+  <text x="875" y="875" font-size="20" font-weight="bold" fill="black">Yellow</text>
+</svg>
+''',
